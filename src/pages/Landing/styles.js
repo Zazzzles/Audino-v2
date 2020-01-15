@@ -1,23 +1,18 @@
 import styled from "styled-components";
 
-import { Colors } from "../../utils/config";
+import { Colors, Layout } from "../../utils/config";
 
 export const MainWrapper = styled.div`
-  height: 150vh;
+  height: 180vh;
   width: 100%;
   background-size: cover;
   background-image: url(${props => props.image});
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${Layout.centerColumn}
 `;
 
 export const LandingWrapper = styled.div`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${Layout.fullscreen}
+  ${Layout.center}
 `;
 
 export const InnerWrapper = styled.div`
@@ -27,9 +22,7 @@ export const InnerWrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${Layout.centerColumn}
   margin-bottom: 100px;
 `;
 
@@ -67,21 +60,59 @@ export const DropzoneSubheading = styled.span`
 `;
 
 export const BankImageContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  ${Layout.centerRow}
 `;
 
 export const BankImage = styled.img`
   width: 60px;
 `;
 
-export const DropzoneWrapper = styled.div`
-  margin-left: 180px;
+export const DropzoneContainer = styled.div`
   height: 325px;
   width: 650px;
   background-color: ${Colors.lightbg};
-  box-sizing: border-box;
-  padding: 25px;
+  ${Layout.cardPadding}
   border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+  ${Layout.shadow}
+  &:hover {
+    border: 1px solid ${Colors.blend};
+  }
+`;
+
+export const DropzoneWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 180px;
+`;
+
+export const Button = styled.div`
+  height: 35px;
+  border-radius: 7px;
+  width: 160px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  ${Layout.gradientBg}
+  ${Layout.center}
+`;
+
+export const ButtonPlaceholder = styled.div`
+  height: 35px;
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 20px;
+  ${Layout.centerRow}
+`;
+
+export const LoadedFilesMessage = styled.div`
+  color: white;
+  margin-left: 20px;
+  width: 300px;
+  font-size: 13px;
+  opacity: 0.5;
+  font-weight: 600;
 `;

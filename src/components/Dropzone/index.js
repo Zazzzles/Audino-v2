@@ -10,6 +10,7 @@ import {
   DroppedFilesContainer
 } from "./styles";
 
+//  Assets
 import DropFilesIcon from "../../assets/icons/csv_grad.png";
 import DropFilesIconDone from "../../assets/icons/filesdone_grad.png";
 

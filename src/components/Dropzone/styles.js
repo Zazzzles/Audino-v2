@@ -1,18 +1,20 @@
 import styled from "styled-components";
-import { Colors } from "../../utils/config";
+import { Colors, Layout } from "../../utils/config";
 export const Container = styled.div`
   height: 180px;
   width: 100%;
   border: 2px dashed ${Colors.grey1};
   background-color: ${props => (props.droppable ? "#ffffff36;" : "transparent")}
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${Layout.center}
   flex-direction: column;
   transition: all 0.3s;
+  overflow: hidden;
   @media (max-width: 1000px) {
     display: none;
+  }
+  &:hover{
+    background-color: #0000001c;
   }
 `;
 
@@ -40,9 +42,7 @@ export const FileLabel = styled.span`
 `;
 
 export const DroppedFilesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${Layout.centerColumn}
 `;
 
 export const Icon = styled.img`
