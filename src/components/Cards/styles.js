@@ -4,6 +4,7 @@ import { Colors, Layout } from "../../utils/config";
 
 export const Container = styled.div`
   width: 100vw;
+  margin-top: 200px;
   ${Layout.center}
 `;
 

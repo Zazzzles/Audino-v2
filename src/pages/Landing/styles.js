@@ -116,3 +116,10 @@ export const LoadedFilesMessage = styled.div`
   opacity: 0.5;
   font-weight: 600;
 `;
+
+export const DownArrowIcon = styled.img`
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 10px;
+`;

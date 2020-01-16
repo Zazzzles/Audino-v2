@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Fade from "react-reveal/Fade";
+import { withRouter } from "react-router-dom";
 
 import {
   MainWrapper,
@@ -20,7 +21,8 @@ import {
   ButtonPlaceholder,
   DropzoneWrapper,
   ButtonWrapper,
-  LoadedFilesMessage
+  LoadedFilesMessage,
+  DownArrowIcon
 } from "./styles";
 
 //  Helpers
@@ -31,10 +33,11 @@ import BG from "../../assets/landing-bg2.png";
 import LogoMain from "../../assets/logo.png";
 import Fnb from "../../assets/fnb.png";
 import Nedbank from "../../assets/nedbank.png";
+import DownArrow from "../../assets/icons/down_arrow.png";
 //  Comps
 import Dropzone from "../../components/Dropzone";
 import Cards from "../../components/Cards";
-export default class Landing extends Component {
+class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +60,12 @@ export default class Landing extends Component {
   };
 
   handleContinue = () => {
-    console.log("Navigate to dash");
+    const { history } = this.props;
+    const { files } = this.state;
+    history.push({
+      pathname: "/dash",
+      files
+    });
   };
 
   render() {
@@ -115,9 +123,12 @@ export default class Landing extends Component {
               </DropzoneWrapper>
             </Fade>
           </InnerWrapper>
+          <DownArrowIcon src={DownArrow} />
         </LandingWrapper>
         <Cards />
       </MainWrapper>
     );
   }
 }
+
+export default withRouter(Landing);

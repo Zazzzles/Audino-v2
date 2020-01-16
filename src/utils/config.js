@@ -1,4 +1,5 @@
 export const Colors = {
+  grey0: "rgba(255, 255, 255, 0.1)",
   grey1: "rgba(255, 255, 255, 0.2)",
   grey2: "rgba(255, 255, 255, 0.5)",
   lightbg: "#161F2A",
@@ -17,6 +18,8 @@ export const Layout = {
   centerColumn: "display: flex; flex-direction: column; align-items: center;",
   centerRow: "display: flex; flex-direction: row; align-items: center;",
   cardPadding: "box-sizing: border-box; padding: 20px;",
+  dashHorzPadding:
+    "box-sizing: border-box; padding-left: 60px; padding-right: 60px;",
   gradientBg: " background: linear-gradient( 83deg, #49A2E4 0%, #7060D3 100%);",
   gradientBgRev:
     " background: linear-gradient( 83deg, #7060D3 0%, #49A2E4 100%);"
