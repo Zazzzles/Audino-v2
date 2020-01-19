@@ -14,7 +14,7 @@ import CaratIcon from "../../assets/icons/carat.png";
 import CsvIcon from "../../assets/icons/csvIcon.png";
 
 export default function Dropdown({ items, onItemSelect }) {
-  const [activeItem, onSelect] = useState(items[0]);
+  const [activeItem, onSelect] = useState(items[0].name);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -30,13 +30,13 @@ export default function Dropdown({ items, onItemSelect }) {
               key={index}
               last={index === items.length - 1}
               onClick={() => {
-                onItemSelect(item);
-                onSelect(item);
+                onItemSelect(item.name);
+                onSelect(item.name);
                 setIsOpen(false);
               }}
             >
               <DropdownIcon src={CsvIcon} />
-              {item}
+              {item.name}
             </DropdownItem>
           );
         })}

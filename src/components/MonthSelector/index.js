@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 //  Styles
 import { Container, MonthItem, ActiveIndicator } from "./styles";
@@ -11,31 +11,21 @@ export default function MonthSelector({
   selectedMonth,
   onMonthSelect
 }) {
-  const [activeMonth, setActiveMonth] = useState(selectedMonth);
   return (
     <Container>
-      <MonthItem
-        active={activeMonth === 0}
-        onClick={() => {
-          onMonthSelect(0);
-          setActiveMonth(0);
-        }}
-      >
+      <MonthItem active={selectedMonth === 0} onClick={() => onMonthSelect(0)}>
         All
-        <ActiveIndicator active={activeMonth === 0} />
+        <ActiveIndicator active={selectedMonth === 0} />
       </MonthItem>
       {availableMonths.map((month, index) => {
         return (
           <MonthItem
             key={index}
-            onClick={() => {
-              onMonthSelect(month);
-              setActiveMonth(month);
-            }}
-            active={activeMonth === month}
+            onClick={() => onMonthSelect(month)}
+            active={selectedMonth === month}
           >
             {MonthsLong[month - 1]}
-            <ActiveIndicator active={activeMonth === month} />
+            <ActiveIndicator active={selectedMonth === month} />
           </MonthItem>
         );
       })}

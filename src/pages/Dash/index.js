@@ -13,6 +13,7 @@ import CategorySection from "../../components/Sections/Categories";
 //Utils
 import { parseFiles } from "../../utils/parser";
 import { getFiles } from "../../utils/persistence";
+import { getMonths } from "../../utils/methods";
 
 class Dash extends Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class Dash extends Component {
     this.state = {
       activeSection: "transactions",
       files: [],
-      workingFile: {}
+      workingFile: {},
+      selectedMonth: 0
     };
   }
 
@@ -43,16 +45,28 @@ class Dash extends Component {
       pathname: "/"
     });
 
-  handleMonthSelect = month => {
-    console.log(`${month} selected`);
+  handleMonthSelect = selectedMonth => {
+    this.setState(
+      {
+        selectedMonth
+      },
+      () =>
+        this.setState({
+          selectedMonth
+        })
+    );
   };
 
   handleFileSelect = file => {
-    console.log(`${file} selected`);
+    const { files } = this.state;
+    const workingFile = files.filter(f => f.name === file)[0];
+    this.setState({ workingFile, selectedMonth: 0 }, () =>
+      this.setState({ workingFile, selectedMonth: 0 })
+    );
   };
 
   render() {
-    const { activeSection, files, workingFile } = this.state;
+    const { activeSection, files, workingFile, selectedMonth } = this.state;
     return (
       <MainWrapper>
         <Sidebar onChange={this.handleSidebarChange} />
@@ -60,16 +74,20 @@ class Dash extends Component {
           <ContentWrapper>
             <Topbar
               activeItem={activeSection}
-              value={30}
+              value={workingFile.transactions.length}
               onBack={this.handleBack}
               onMonthSelect={this.handleMonthSelect}
-              selectedMonth={11}
-              availableMonths={[10, 11, 12]}
+              selectedMonth={selectedMonth}
+              availableMonths={getMonths(workingFile.transactions)}
               onFileSelect={this.handleFileSelect}
+              availableFiles={files}
             />
 
             {activeSection === "transactions" && (
-              <TransactionSection transactions={workingFile.transactions} />
+              <TransactionSection
+                transactions={workingFile.transactions}
+                selectedMonth={selectedMonth}
+              />
             )}
             {activeSection === "references" && <ReferenceSection />}
             {activeSection === "categories" && <CategorySection />}

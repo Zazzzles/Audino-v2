@@ -44,7 +44,8 @@ export default function Topbar({
   onMonthSelect,
   selectedMonth,
   availableMonths,
-  onFileSelect
+  onFileSelect,
+  availableFiles
 }) {
   return (
     <Container>
@@ -64,10 +65,7 @@ export default function Topbar({
         selectedMonth={selectedMonth}
         onMonthSelect={onMonthSelect}
       />
-      <Dropdown
-        items={["savings.csv", "cheque.csv", "nedbank-example.csv"]}
-        onItemSelect={onFileSelect}
-      />
+      <Dropdown items={availableFiles} onItemSelect={onFileSelect} />
     </Container>
   );
 }
