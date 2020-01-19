@@ -9,54 +9,60 @@ import Topbar from "../../components/Topbar";
 //  Sections
 import TransactionSection from "../../components/Sections/Transactions";
 import ReferenceSection from "../../components/Sections/References";
+import CategorySection from "../../components/Sections/Categories";
+//Utils
+import { parseFiles } from "../../utils/parser";
+import { getFiles } from "../../utils/persistence";
 
 class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSection: "transactions"
+      activeSection: "transactions",
+      files: [],
+      workingFile: {}
     };
   }
 
-  handleSidebarChange = navItem => {
-    this.setState({ activeSection: navItem });
+  componentDidMount = async () => {
+    const { location } = this.props;
+    const { files } = location;
+    let data = [];
+    if (!files) {
+      data = getFiles();
+    } else {
+      data = await parseFiles(files);
+    }
+    this.setState({ files: data, workingFile: data[0] });
   };
 
-  renderTopbarTitle = (activeItem, value) => {
-    if (activeItem === "transactions") {
-      return {
-        title: "Transactions",
-        subtitle: `${value} total transactions`
-      };
-    }
-    if (activeItem === "references") {
-      return {
-        title: "References",
-        subtitle: `${value} total references`
-      };
-    }
-  };
+  handleSidebarChange = activeSection => this.setState({ activeSection });
 
-  handleBack = () => {
-    const { history } = this.props;
-    history.push({
+  handleBack = () =>
+    this.props.history.push({
       pathname: "/"
     });
-  };
 
   render() {
-    const { activeSection } = this.state;
+    const { activeSection, files, workingFile } = this.state;
     return (
       <MainWrapper>
         <Sidebar onChange={this.handleSidebarChange} />
-        <ContentWrapper>
-          <Topbar
-            {...this.renderTopbarTitle(activeSection, 30)}
-            onBack={this.handleBack}
-          />
-          {activeSection === "transactions" && <TransactionSection />}
-          {activeSection === "references" && <ReferenceSection />}
-        </ContentWrapper>
+        {workingFile.transactions && (
+          <ContentWrapper>
+            <Topbar
+              activeItem={activeSection}
+              value={30}
+              onBack={this.handleBack}
+            />
+
+            {activeSection === "transactions" && (
+              <TransactionSection transactions={workingFile.transactions} />
+            )}
+            {activeSection === "references" && <ReferenceSection />}
+            {activeSection === "categories" && <CategorySection />}
+          </ContentWrapper>
+        )}
       </MainWrapper>
     );
   }

@@ -61,11 +61,18 @@ class Landing extends Component {
 
   handleContinue = () => {
     const { history } = this.props;
-    const { files } = this.state;
-    history.push({
-      pathname: "/dash",
-      files
-    });
+    const { files, loadedFiles } = this.state;
+    if (files.length === 0) {
+      history.push({
+        pathname: "/dash",
+        loadedFiles
+      });
+    } else {
+      history.push({
+        pathname: "/dash",
+        files
+      });
+    }
   };
 
   render() {

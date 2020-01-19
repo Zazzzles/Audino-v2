@@ -2,7 +2,7 @@
 const Papa = require("papaparse");
 const Stoor = require("stoor");
 
-const { formatDate, isValidDate, getMonthNumber } = require("./methods");
+const { formatDate, isValidDate, getMonthNumber } = require("./formatting");
 interface DataPoint {
   date: String;
   amount: Number;

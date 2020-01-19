@@ -18,6 +18,8 @@ import TransactionsGrad from "../../assets/icons/transactions_grad.png";
 import TransactionsWhite from "../../assets/icons/transactions_white.png";
 import ReferencesGrad from "../../assets/icons/references_grad.png";
 import ReferencesWhite from "../../assets/icons/references_white.png";
+import CategoriesGrad from "../../assets/icons/categories_grad.png";
+import CategoriesWhite from "../../assets/icons/categories_white.png";
 
 const NavItem = ({
   iconActive,
@@ -60,7 +62,6 @@ export default function Sidebar({ onChange }) {
           }}
           iconActive={TransactionsGrad}
           iconInactive={TransactionsWhite}
-          hasBottomBorder={false}
         />
       </Fade>
       <Fade duration={2500}>
@@ -73,7 +74,19 @@ export default function Sidebar({ onChange }) {
           }}
           iconActive={ReferencesGrad}
           iconInactive={ReferencesWhite}
-          hasBottomBorder={true}
+        />
+      </Fade>
+      <Fade duration={3000}>
+        <NavItem
+          label={"Categories"}
+          active={activeItem === "categories"}
+          setActive={() => {
+            onChange("categories");
+            setActiveItem("categories");
+          }}
+          iconActive={CategoriesGrad}
+          iconInactive={CategoriesWhite}
+          hasBottomBorder
         />
       </Fade>
     </Container>

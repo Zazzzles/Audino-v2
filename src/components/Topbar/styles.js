@@ -7,6 +7,11 @@ export const Container = styled.div`
   margin-top: 60px;
   margin-bottom: 40px;
   ${Layout.centerRow}
+  justify-content: space-between;
+`;
+
+export const TitleGroup = styled.div`
+  ${Layout.centerRow}
 `;
 
 export const TitleContainer = styled.div`

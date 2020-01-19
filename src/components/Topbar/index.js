@@ -6,28 +6,65 @@ import {
   TitleContainer,
   PageTitle,
   PageSubtitle,
-  BackArrowImg
+  BackArrowImg,
+  TitleGroup
 } from "./styles";
 
+//  Assets
 import BackArrow from "../../assets/icons/backarrow.png";
 
-export default function Topbar({ title, subtitle, onBack }) {
+//  Components
+import Dropdown from "../Dropdown";
+
+const renderTitles = (activeItem, value) => {
+  if (activeItem === "transactions") {
+    return {
+      title: "TRANSACTIONS",
+      subtitle: `${value} total transactions`
+    };
+  }
+  if (activeItem === "references") {
+    return {
+      title: "REFERENCES",
+      subtitle: `${value} total references`
+    };
+  }
+  if (activeItem === "categories") {
+    return {
+      title: "CATEGORIES",
+      subtitle: `${value} total categories`
+    };
+  }
+};
+
+export default function Topbar({ activeItem, value, onBack }) {
   return (
     <Fade top>
       <Container>
-        <Fade duration={2000}>
-          <BackArrowImg src={BackArrow} onClick={onBack} />
-        </Fade>
-
-        <TitleContainer>
+        <TitleGroup>
           <Fade duration={2000}>
-            <PageTitle>{title}</PageTitle>
+            <BackArrowImg src={BackArrow} onClick={onBack} />
           </Fade>
 
-          <Fade duration={2500}>
-            <PageSubtitle>{subtitle}</PageSubtitle>
-          </Fade>
-        </TitleContainer>
+          <TitleContainer>
+            <Fade duration={2000}>
+              <PageTitle>{renderTitles(activeItem, value).title}</PageTitle>
+            </Fade>
+
+            <Fade duration={2500}>
+              <PageSubtitle>
+                {renderTitles(activeItem, value).subtitle}
+              </PageSubtitle>
+            </Fade>
+          </TitleContainer>
+        </TitleGroup>
+
+        <Dropdown
+          items={["savings.csv", "cheque.csv", "nedbank-example.csv"]}
+          onItemSelect={item => {
+            console.log(item);
+          }}
+        />
       </Container>
     </Fade>
   );
