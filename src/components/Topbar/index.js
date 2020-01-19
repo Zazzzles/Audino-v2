@@ -1,5 +1,4 @@
 import React from "react";
-import Fade from "react-reveal/Fade";
 
 import {
   Container,
@@ -15,6 +14,7 @@ import BackArrow from "../../assets/icons/backarrow.png";
 
 //  Components
 import Dropdown from "../Dropdown";
+import MonthSelector from "../MonthSelector";
 
 const renderTitles = (activeItem, value) => {
   if (activeItem === "transactions") {
@@ -37,35 +37,37 @@ const renderTitles = (activeItem, value) => {
   }
 };
 
-export default function Topbar({ activeItem, value, onBack }) {
+export default function Topbar({
+  activeItem,
+  value,
+  onBack,
+  onMonthSelect,
+  selectedMonth,
+  availableMonths,
+  onFileSelect
+}) {
   return (
-    <Fade top>
-      <Container>
-        <TitleGroup>
-          <Fade duration={2000}>
-            <BackArrowImg src={BackArrow} onClick={onBack} />
-          </Fade>
+    <Container>
+      <TitleGroup>
+        <BackArrowImg src={BackArrow} onClick={onBack} />
 
-          <TitleContainer>
-            <Fade duration={2000}>
-              <PageTitle>{renderTitles(activeItem, value).title}</PageTitle>
-            </Fade>
+        <TitleContainer>
+          <PageTitle>{renderTitles(activeItem, value).title}</PageTitle>
 
-            <Fade duration={2500}>
-              <PageSubtitle>
-                {renderTitles(activeItem, value).subtitle}
-              </PageSubtitle>
-            </Fade>
-          </TitleContainer>
-        </TitleGroup>
-
-        <Dropdown
-          items={["savings.csv", "cheque.csv", "nedbank-example.csv"]}
-          onItemSelect={item => {
-            console.log(item);
-          }}
-        />
-      </Container>
-    </Fade>
+          <PageSubtitle>
+            {renderTitles(activeItem, value).subtitle}
+          </PageSubtitle>
+        </TitleContainer>
+      </TitleGroup>
+      <MonthSelector
+        availableMonths={availableMonths}
+        selectedMonth={selectedMonth}
+        onMonthSelect={onMonthSelect}
+      />
+      <Dropdown
+        items={["savings.csv", "cheque.csv", "nedbank-example.csv"]}
+        onItemSelect={onFileSelect}
+      />
+    </Container>
   );
 }

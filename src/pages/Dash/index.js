@@ -43,6 +43,14 @@ class Dash extends Component {
       pathname: "/"
     });
 
+  handleMonthSelect = month => {
+    console.log(`${month} selected`);
+  };
+
+  handleFileSelect = file => {
+    console.log(`${file} selected`);
+  };
+
   render() {
     const { activeSection, files, workingFile } = this.state;
     return (
@@ -54,6 +62,10 @@ class Dash extends Component {
               activeItem={activeSection}
               value={30}
               onBack={this.handleBack}
+              onMonthSelect={this.handleMonthSelect}
+              selectedMonth={11}
+              availableMonths={[10, 11, 12]}
+              onFileSelect={this.handleFileSelect}
             />
 
             {activeSection === "transactions" && (

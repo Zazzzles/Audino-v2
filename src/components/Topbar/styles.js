@@ -12,6 +12,7 @@ export const Container = styled.div`
 
 export const TitleGroup = styled.div`
   ${Layout.centerRow}
+  width: 350px;
 `;
 
 export const TitleContainer = styled.div`

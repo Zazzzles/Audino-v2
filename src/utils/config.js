@@ -24,3 +24,33 @@ export const Layout = {
   gradientBgRev:
     " background: linear-gradient( 83deg, #7060D3 0%, #49A2E4 100%);"
 };
+
+export const MonthsLong = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+export const MonthsShort = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "June",
+  "July",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec"
+];
