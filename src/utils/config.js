@@ -8,7 +8,9 @@ export const Colors = {
   secondary: "#7060D3",
   secondaryLight: "rgba(112, 96, 211, 0.5)",
   blend: "#6670d7",
-  blendTransparent: "rgba(102, 112, 215, 0.2)"
+  blendTransparent: "rgba(102, 112, 215, 0.2)",
+  red: "#EF2E25",
+  green: "#01B966"
 };
 
 export const Layout = {

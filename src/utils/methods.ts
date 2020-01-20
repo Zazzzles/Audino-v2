@@ -213,3 +213,41 @@ export function getRecurringReferences(
 
   return finalFormat;
 }
+
+export function getTotalIncome(data: Array<DataPoint>): Number {
+  return data.reduce((acc, item) => {
+    if (item.amount > 0) {
+      acc += item.amount;
+    }
+    return acc;
+  }, 0);
+}
+
+export function getTotalIncomeTransactionCount(data: Array<DataPoint>): Number {
+  return data.reduce((acc, item) => {
+    if (item.amount > 0) {
+      acc += 1;
+    }
+    return acc;
+  }, 0);
+}
+
+export function getTotalExpenses(data: Array<DataPoint>): Number {
+  return data.reduce((acc, item) => {
+    if (item.amount < 0) {
+      acc += item.amount;
+    }
+    return acc;
+  }, 0);
+}
+
+export function getTotalExpenseTransactionCount(
+  data: Array<DataPoint>
+): Number {
+  return data.reduce((acc, item) => {
+    if (item.amount < 0) {
+      acc += 1;
+    }
+    return acc;
+  }, 0);
+}

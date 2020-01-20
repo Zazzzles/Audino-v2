@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
 
-import { Container, TransactionCountDisplay, ChartContainer } from "./styles";
+import { Container, TransactionCountDisplay, FreqWrapper } from "./styles";
 
 //  Components
 import Panel from "../../Panel";
 import Table from "../../Table";
 import Linechart from "../../Charts/Linechart";
+import IncomeStat from "../../IncomeStat";
+import FreqChart from "../../FreqChart";
 //  Assets
 import ListIcon from "../../../assets/icons/panels/transaction_list.png";
 import CashflowIcon from "../../../assets/icons/panels/cashflow.png";
-import IncomeIcon from "../../../assets/icons/panels/income.png";
-import ExpensesIcon from "../../../assets/icons/panels/expenses.png";
+import TotalsIcon from "../../../assets/icons/panels/totals.png";
+import CountsIcon from "../../../assets/icons/panels/counts.png";
 //  Helpers
 import { sortByMonth, addAmounts } from "../../../utils/methods";
 import { MonthsLong } from "../../../utils/config";
 import {
   mapToColor,
   isolateDate,
-  isolateAmount,
-  isolateTransactionCounts
+  isolateAmount
 } from "../../../utils/formatting";
 
 export default class Transactions extends Component {
@@ -109,17 +110,23 @@ export default class Transactions extends Component {
           width={1}
           row={2}
           col={2}
-          icon={IncomeIcon}
-          title={"INCOME"}
-        />
+          icon={CountsIcon}
+          title={"TRANSACTION COUNTS"}
+        >
+          <FreqWrapper>
+            <FreqChart data={transactions} />
+          </FreqWrapper>
+        </Panel>
         <Panel
           height={1}
           width={1}
           row={2}
           col={3}
-          icon={ExpensesIcon}
-          title={"EXPENSES"}
-        />
+          icon={TotalsIcon}
+          title={"TOTALS"}
+        >
+          <IncomeStat transactions={transactions} />
+        </Panel>
       </Container>
     );
   }

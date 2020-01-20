@@ -25,3 +25,9 @@ export const ChartContainer = styled.div`
   width: 100%;
   ${Layout.center}
 `;
+
+export const FreqWrapper = styled.div`
+  margin-top: 15px;
+  width: 102%;
+  ${Layout.center}
+`;

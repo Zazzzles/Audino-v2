@@ -68,3 +68,7 @@ export function isValidDate(date: String): Boolean {
 export function getMonthNumber(date: String): number {
   return parseInt(date.split("/")[1]);
 }
+
+export function numberWithSpaces(x: number): String {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

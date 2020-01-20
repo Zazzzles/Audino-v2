@@ -4,8 +4,8 @@ import { Colors, Layout } from "../../utils/config";
 
 export const Container = styled.div`
   width: 100%;
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top: 33px;
+  margin-bottom: 31px;
   ${Layout.centerRow}
   justify-content: space-between;
 `;
