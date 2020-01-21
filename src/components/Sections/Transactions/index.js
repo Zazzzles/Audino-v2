@@ -114,7 +114,7 @@ export default class Transactions extends Component {
           title={"TRANSACTION COUNTS"}
         >
           <FreqWrapper>
-            <FreqChart data={transactions} />
+            <FreqChart data={this.props.transactions} />
           </FreqWrapper>
         </Panel>
         <Panel

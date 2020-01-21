@@ -9,6 +9,7 @@ export const Colors = {
   secondaryLight: "rgba(112, 96, 211, 0.5)",
   blend: "#6670d7",
   blendTransparent: "rgba(102, 112, 215, 0.2)",
+  blendTransparent1: "rgba(102, 112, 215, 0.06)",
   red: "#EF2E25",
   green: "#01B966"
 };

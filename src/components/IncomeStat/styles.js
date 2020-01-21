@@ -25,11 +25,27 @@ export const Amount = styled.div`
 `;
 
 export const AmountContainer = styled.div`
-  width: 80%;
+  width: 100%;
   padding-top: 10px;
   padding-bottom: 7px;
   box-sizing: border-box;
   ${Layout.centerRow}
   justify-content: space-between;
   ${props => props.borderBottom && `border-bottom: 1px solid ${Colors.grey0}`}
+`;
+
+export const LeftWrapper = styled.div`
+  ${Layout.centerRow}
+`;
+export const Icon = styled.img`
+  height: 25px;
+`;
+
+export const IconContainer = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  margin-right: 30px;
+  ${Layout.center}
+  background-color: ${Colors.blendTransparent};
 `;

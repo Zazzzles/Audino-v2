@@ -16,7 +16,8 @@ export const TableRow = styled.div`
   padding-right: 10px;
   box-sizing: border-box;
   align-items: center;
-  background-color: ${props => (props.light ? Colors.grey0 : "transparent")};
+  background-color: ${props =>
+    props.light ? Colors.blendTransparent1 : "transparent"};
 `;
 export const RowItem = styled.div`
   width: ${props => props.width};

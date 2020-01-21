@@ -8,6 +8,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   flex-wrap: wrap;
   align-content: flex-start;
+  justify-content: center;
 `;
 
 export const MonthContainer = styled.div`
