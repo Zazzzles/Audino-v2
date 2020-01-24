@@ -29,7 +29,7 @@ import {
 import { getFiles } from "../../utils/persistence";
 
 //  Assets
-import BG from "../../assets/landing-bg2.png";
+import BG from "../../assets/landing-bg.png";
 import LogoMain from "../../assets/logo.png";
 import Fnb from "../../assets/fnb.png";
 import Nedbank from "../../assets/nedbank.png";

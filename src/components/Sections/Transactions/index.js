@@ -88,7 +88,8 @@ export default class Transactions extends Component {
             {transactions.length} transactions •{" "}
             {selectedMonth === 0 ? "All" : MonthsLong[selectedMonth - 1]}
           </TransactionCountDisplay>
-          <Table data={transactions} />
+
+          <Table data={sortByMonth(transactions)} height={600} />
         </Panel>
         <Panel
           height={1}
