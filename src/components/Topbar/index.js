@@ -23,10 +23,10 @@ const renderTitles = (activeItem, value) => {
       subtitle: `${value} total transactions`
     };
   }
-  if (activeItem === "references") {
+  if (activeItem === "recurring") {
     return {
-      title: "REFERENCES",
-      subtitle: `${value} total references`
+      title: "RECURRING",
+      subtitle: `${value} total recurring`
     };
   }
   if (activeItem === "categories") {

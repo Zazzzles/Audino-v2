@@ -75,60 +75,63 @@ export default class Transactions extends Component {
     const { selectedMonth } = this.props;
     let transactions = this.getTransactionsToRender();
     return (
-      <Container>
-        <Panel
-          height={2}
-          width={1}
-          row={1}
-          col={1}
-          icon={ListIcon}
-          title={"TRANSACTION LIST"}
-        >
-          <TransactionCountDisplay>
-            {transactions.length} transactions •{" "}
-            {selectedMonth === 0 ? "All" : MonthsLong[selectedMonth - 1]}
-          </TransactionCountDisplay>
+      <Fade>
+        <Container>
+          <Panel
+            height={2}
+            width={1}
+            row={1}
+            col={1}
+            icon={ListIcon}
+            title={"TRANSACTION LIST"}
+          >
+            <TransactionCountDisplay>
+              {transactions.length} transactions •{" "}
+              {selectedMonth === 0 ? "All" : MonthsLong[selectedMonth - 1]}
+            </TransactionCountDisplay>
 
-          <Table data={sortByMonth(transactions)} height={600} />
-        </Panel>
-        <Panel
-          height={1}
-          width={2}
-          row={1}
-          col={2}
-          icon={CashflowIcon}
-          title={"CASHFLOW"}
-        >
-          <Linechart
-            ref={elem => (this.lineChart = elem)}
-            id={"1"}
-            height={140}
-            width={500}
-          />
-        </Panel>
-        <Panel
-          height={1}
-          width={1}
-          row={2}
-          col={2}
-          icon={CountsIcon}
-          title={"TRANSACTION COUNTS"}
-        >
-          <FreqWrapper>
-            <FreqChart data={this.props.transactions} />
-          </FreqWrapper>
-        </Panel>
-        <Panel
-          height={1}
-          width={1}
-          row={2}
-          col={3}
-          icon={TotalsIcon}
-          title={"TOTALS"}
-        >
-          <IncomeStat transactions={transactions} />
-        </Panel>
-      </Container>
+            <Table data={sortByMonth(transactions)} height={600} />
+          </Panel>
+          <Panel
+            height={1}
+            width={2}
+            row={1}
+            col={2}
+            icon={CashflowIcon}
+            title={"CASHFLOW"}
+          >
+            <Linechart
+              ref={elem => (this.lineChart = elem)}
+              id={"1"}
+              height={140}
+              width={500}
+            />
+          </Panel>
+
+          <Panel
+            height={1}
+            width={1}
+            row={2}
+            col={2}
+            icon={CountsIcon}
+            title={"TRANSACTION COUNTS"}
+          >
+            <FreqWrapper>
+              <FreqChart data={this.props.transactions} />
+            </FreqWrapper>
+          </Panel>
+          <Panel
+            height={1}
+            width={1}
+            row={2}
+            col={3}
+            icon={TotalsIcon}
+            title={"TOTALS"}
+          >
+            <IncomeStat transactions={transactions} />
+          </Panel>
+        </Container>
+      </Fade>
     );
   }
 }

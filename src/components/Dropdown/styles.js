@@ -59,6 +59,7 @@ export const DropdownPanel = styled.div`
   margin-top: 65px;
   width: 260px;
   transition: all 0.3s;
+  z-index: 999;
   height: ${props => (props.isOpen ? props.height : 0)}px;
   background-color: ${props => (props.isOpen ? "#161f29" : "transparent")};
   border-radius: 15px;

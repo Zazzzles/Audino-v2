@@ -32,6 +32,7 @@ export const Logo = styled.img`
 
 export const TagLine = styled.span`
   color: ${Colors.grey2};
+  text-align: center;
 `;
 
 export const DropzoneTopbar = styled.div`

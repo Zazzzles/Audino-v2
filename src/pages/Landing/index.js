@@ -84,7 +84,10 @@ class Landing extends Component {
             <Fade>
               <LogoWrapper>
                 <Logo src={LogoMain} />
-                <TagLine>Personal finance visualized</TagLine>
+                <TagLine>
+                  Personal finance visualized <br /> <br /> v
+                  {process.env.REACT_APP_VERSION}
+                </TagLine>
               </LogoWrapper>
             </Fade>
 

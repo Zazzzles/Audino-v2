@@ -27,6 +27,10 @@ export default class Table extends Component {
     this.getAvailableHeaders();
   };
 
+  componentWillReceiveProps = () => {
+    this.getAvailableHeaders();
+  };
+
   getAvailableHeaders = () => {
     const { data } = this.props;
     let availableHeaders = {};

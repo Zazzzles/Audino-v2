@@ -8,12 +8,16 @@ import Sidebar from "../../components/Sidebar";
 import Topbar from "../../components/Topbar";
 //  Sections
 import TransactionSection from "../../components/Sections/Transactions";
-import ReferenceSection from "../../components/Sections/References";
+import RecurringSection from "../../components/Sections/Recurring";
 import CategorySection from "../../components/Sections/Categories";
 //Utils
 import { parseFiles } from "../../utils/parser";
 import { getFiles } from "../../utils/persistence";
-import { getMonths } from "../../utils/methods";
+import {
+  getMonths,
+  getDebitOrders,
+  getRecurringTransactions
+} from "../../utils/methods";
 
 class Dash extends Component {
   constructor(props) {
@@ -89,7 +93,14 @@ class Dash extends Component {
                 selectedMonth={selectedMonth}
               />
             )}
-            {activeSection === "references" && <ReferenceSection />}
+            {activeSection === "recurring" && (
+              <RecurringSection
+                recurringTransactions={getRecurringTransactions(
+                  workingFile.transactions
+                )}
+                debitOrders={getDebitOrders(workingFile.transactions)}
+              />
+            )}
             {activeSection === "categories" && <CategorySection />}
           </ContentWrapper>
         )}

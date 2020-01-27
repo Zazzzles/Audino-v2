@@ -89,7 +89,9 @@ export function sortByMonth(
 }
 
 //  Determines reference counts by comparing similarity of reference names
-export function getReferences(data: Array<DataPoint>): Array<ReferencePoint> {
+export function getRecurringTransactions(
+  data: Array<DataPoint>
+): Array<ReferencePoint> {
   let references = data.reduce((acc: any, item) => {
     const { ref, amount, date } = item;
     let sanitized = getCommonWords(ref, ref).join(" ");
@@ -139,15 +141,13 @@ export function getReferencesByMonth(
 ): { month: Array<ReferencePoint> } {
   let sorted: any = sortByMonth(data);
   Object.keys(sorted).forEach(key => {
-    sorted[key] = getReferences(sorted[key]);
+    sorted[key] = getRecurringTransactions(sorted[key]);
   });
   return sorted;
 }
 
 //  FIXME: Add amounts if reference occurs more than once in same month
-export function getRecurringReferences(
-  data: Array<DataPoint>
-): Array<RecurringPoint> {
+export function getDebitOrders(data: Array<DataPoint>): Array<RecurringPoint> {
   let sorted: any = getReferencesByMonth(data);
   let reduced = Object.keys(sorted).reduce((result: any, key) => {
     let month = key;
@@ -162,6 +162,10 @@ export function getRecurringReferences(
     });
     return result;
   }, {});
+
+  //  FIXME: Check this -> this is the crucial method that determines which
+  //  transactions are consistent between months
+
   let intersected: any = Object.keys(reduced).reduce(
     (result: Array<string>, key) => {
       if (result.length === 0) {
@@ -210,7 +214,6 @@ export function getRecurringReferences(
       transactions: formatted[key].transactions
     };
   });
-
   return finalFormat;
 }
 

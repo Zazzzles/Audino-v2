@@ -66,11 +66,11 @@ export default function Sidebar({ onChange }) {
       </Fade>
       <Fade duration={2500}>
         <NavItem
-          label={"References"}
-          active={activeItem === "references"}
+          label={"Recurring"}
+          active={activeItem === "recurring"}
           setActive={() => {
-            onChange("references");
-            setActiveItem("references");
+            onChange("recurring");
+            setActiveItem("recurring");
           }}
           iconActive={ReferencesGrad}
           iconInactive={ReferencesWhite}
