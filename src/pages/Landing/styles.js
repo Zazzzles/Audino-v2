@@ -100,6 +100,19 @@ export const Button = styled.div`
   ${Layout.center}
 `;
 
+export const ButtonLink = styled.a`
+  height: 35px;
+  border-radius: 7px;
+  width: 160px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: 700;
+  ${Layout.gradientBg}
+  ${Layout.center}
+`;
+
 export const ButtonPlaceholder = styled.div`
   height: 35px;
 `;

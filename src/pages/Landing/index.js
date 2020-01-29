@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
 import { withRouter } from "react-router-dom";
 
+import Example from "../../assets/example.csv";
+
 import {
   MainWrapper,
   LandingWrapper,
@@ -22,7 +24,8 @@ import {
   DropzoneWrapper,
   ButtonWrapper,
   LoadedFilesMessage,
-  DownArrowIcon
+  DownArrowIcon,
+  ButtonLink
 } from "./styles";
 
 //  Helpers
@@ -126,6 +129,26 @@ class Landing extends Component {
                           {loadedFiles.length > 1 ? " files" : " file"} loaded.{" "}
                           Continue with loaded files or upload new ones.
                         </LoadedFilesMessage>
+                      </Fade>
+                    </Fade>
+                  )}
+
+                  {files.length === 0 && loadedFiles.length === 0 && (
+                    <Fade>
+                      <Fade bottom>
+                        <LoadedFilesMessage>
+                          Don't have any statements? That's ok!
+                        </LoadedFilesMessage>
+                      </Fade>
+                    </Fade>
+                  )}
+
+                  {files.length === 0 && loadedFiles.length === 0 && (
+                    <Fade>
+                      <Fade bottom>
+                        <ButtonLink href={Example} download>
+                          LOAD AN EXAMPLE
+                        </ButtonLink>
                       </Fade>
                     </Fade>
                   )}
