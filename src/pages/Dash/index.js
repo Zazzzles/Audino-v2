@@ -13,20 +13,17 @@ import CategorySection from "../../components/Sections/Categories";
 //Utils
 import { parseFiles } from "../../utils/parser";
 import { getFiles } from "../../utils/persistence";
-import {
-  getMonths,
-  getDebitOrders,
-  getRecurringTransactions
-} from "../../utils/methods";
+import { getMonths } from "../../utils/methods";
 
 class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSection: "transactions",
+      activeSection: "recurring",
       files: [],
       workingFile: {},
-      selectedMonth: 0
+      selectedMonth: 0,
+      monthSelectorEnabled: true
     };
   }
 
@@ -42,7 +39,11 @@ class Dash extends Component {
     this.setState({ files: data, workingFile: data[0] });
   };
 
-  handleSidebarChange = activeSection => this.setState({ activeSection });
+  handleSidebarChange = activeSection =>
+    this.setState({
+      activeSection,
+      monthSelectorEnabled: activeSection !== "recurring"
+    });
 
   handleBack = () =>
     this.props.history.push({
@@ -70,7 +71,13 @@ class Dash extends Component {
   };
 
   render() {
-    const { activeSection, files, workingFile, selectedMonth } = this.state;
+    const {
+      activeSection,
+      files,
+      workingFile,
+      selectedMonth,
+      monthSelectorEnabled
+    } = this.state;
     return (
       <MainWrapper>
         <Sidebar onChange={this.handleSidebarChange} />
@@ -84,6 +91,7 @@ class Dash extends Component {
               selectedMonth={selectedMonth}
               availableMonths={getMonths(workingFile.transactions)}
               onFileSelect={this.handleFileSelect}
+              monthSelectorEnabled={monthSelectorEnabled}
               availableFiles={files}
             />
 
@@ -94,12 +102,7 @@ class Dash extends Component {
               />
             )}
             {activeSection === "recurring" && (
-              <RecurringSection
-                recurringTransactions={getRecurringTransactions(
-                  workingFile.transactions
-                )}
-                debitOrders={getDebitOrders(workingFile.transactions)}
-              />
+              <RecurringSection transactions={workingFile.transactions} />
             )}
             {activeSection === "categories" && <CategorySection />}
           </ContentWrapper>

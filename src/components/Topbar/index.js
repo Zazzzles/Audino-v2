@@ -45,7 +45,8 @@ export default function Topbar({
   selectedMonth,
   availableMonths,
   onFileSelect,
-  availableFiles
+  availableFiles,
+  monthSelectorEnabled
 }) {
   return (
     <Container>
@@ -60,11 +61,14 @@ export default function Topbar({
           </PageSubtitle>
         </TitleContainer>
       </TitleGroup>
-      <MonthSelector
-        availableMonths={availableMonths}
-        selectedMonth={selectedMonth}
-        onMonthSelect={onMonthSelect}
-      />
+      {monthSelectorEnabled && (
+        <MonthSelector
+          availableMonths={availableMonths}
+          selectedMonth={selectedMonth}
+          onMonthSelect={onMonthSelect}
+        />
+      )}
+
       <Dropdown items={availableFiles} onItemSelect={onFileSelect} />
     </Container>
   );

@@ -6,6 +6,8 @@ import {
   Buffer
 } from "./types";
 
+import { intersect, occurances } from "./helpers";
+
 import { getMonthNumber } from "./formatting";
 
 function getCommonWords(str1: String, str2: String): Array<String> {
@@ -136,7 +138,7 @@ export function getRecurringTransactions(
   return formatted;
 }
 
-export function getReferencesByMonth(
+function getReferencesByMonth(
   data: Array<DataPoint>
 ): { month: Array<ReferencePoint> } {
   let sorted: any = sortByMonth(data);
@@ -148,46 +150,44 @@ export function getReferencesByMonth(
 
 //  FIXME: Add amounts if reference occurs more than once in same month
 export function getDebitOrders(data: Array<DataPoint>): Array<RecurringPoint> {
-  let sorted: any = getReferencesByMonth(data);
-  let reduced = Object.keys(sorted).reduce((result: any, key) => {
-    let month = key;
-    sorted[month].forEach((monthTransaction: ReferencePoint) => {
-      if (!result[month]) {
-        result[month] = [monthTransaction.name];
-      } else {
-        if (!result[month].includes(monthTransaction.name)) {
-          result[month].push(monthTransaction.name);
-        }
-      }
-    });
-    return result;
-  }, {});
-
-  //  FIXME: Check this -> this is the crucial method that determines which
-  //  transactions are consistent between months
-
-  let intersected: any = Object.keys(reduced).reduce(
-    (result: Array<string>, key) => {
-      if (result.length === 0) {
-        return reduced[key];
-      } else {
-        let intersection = [];
-        if (result.length > reduced[key].length) {
-          intersection = result.filter(value => reduced[key].includes(value));
-        } else {
-          intersection = reduced[key].filter((value: string) =>
-            result.includes(value)
-          );
-        }
-        return intersection;
-      }
+  //  Format per month {[key: month]: Array<RecurringPoint>}
+  let sorted: { [key: number]: Array<ReferencePoint> } = getReferencesByMonth(
+    data
+  );
+  //  Format anonomous array and filter for only 1 transaction {[key: index]: Array<RecurringPoint>}
+  let test: Array<Array<ReferencePoint>> = Object.values(sorted).map(
+    (month: any) => {
+      return month.filter((transaction: ReferencePoint) => {
+        return transaction.transactions.length === 1;
+      });
+    }
+  );
+  //  array[string] with reference name duplicates as often as they come up across months
+  let test2: Array<string> = test.reduce(
+    (acc: Array<string>, item: Array<ReferencePoint>) => {
+      return [
+        ...acc,
+        ...item.map((transaction: ReferencePoint) => {
+          return transaction.name;
+        })
+      ];
     },
     []
   );
+  //  array[string] with references removed that occur less than the total amount of monts - 1
+  //  ( to account for incomplete statements)
+  let test3: Array<string> = test
+    .flat()
+    .filter(item => {
+      return occurances(test2, item.name) >= Object.values(sorted).length - 1;
+    })
+    .map(_ => _.name);
 
-  let formatted: any = Object.keys(sorted).reduce((result: any, key) => {
+  let formatted: {
+    [key: string]: { amount: number; transactions: Array<DataPoint> };
+  } = Object.keys(sorted).reduce((result: any, key: any) => {
     sorted[key].forEach((monthTransaction: ReferencePoint) => {
-      if (intersected.includes(monthTransaction.name)) {
+      if (test3.includes(monthTransaction.name)) {
         if (result[monthTransaction.name]) {
           result[monthTransaction.name] = {
             amount:

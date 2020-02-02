@@ -1,28 +1,28 @@
-export interface DataPoint {
+export type DataPoint = {
   date: string;
   amount: number;
   ref: string;
-}
+};
 
-export interface TotalPoint {
+export type TotalPoint = {
   date: string;
   transactions: Number;
   amount: Number;
-}
+};
 
-export interface ReferencePoint {
+export type ReferencePoint = {
   name: string;
   count: Number;
   transactions: Array<DataPoint>;
   amount: Number;
-}
+};
 
-export interface RecurringPoint {
+export type RecurringPoint = {
   name: string;
   total: Number;
   transactions: Array<DataPoint>;
-}
+};
 
-export interface Buffer {
+export type Buffer = {
   [key: string]: [DataPoint];
-}
+};
