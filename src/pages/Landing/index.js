@@ -36,6 +36,7 @@ import BG from "../../assets/landing-bg.png";
 import LogoMain from "../../assets/logo.png";
 import Fnb from "../../assets/fnb.png";
 import Nedbank from "../../assets/nedbank.png";
+import Absa from "../../assets/absa.png";
 import DownArrow from "../../assets/icons/down_arrow.png";
 //  Comps
 import Dropzone from "../../components/Dropzone";
@@ -107,6 +108,7 @@ class Landing extends Component {
                     <BankImageContainer>
                       <BankImage src={Fnb} />
                       <BankImage src={Nedbank} />
+                      <BankImage src={Absa} />
                     </BankImageContainer>
                   </DropzoneTopbar>
                   <Dropzone handleDrop={this.handleDrop} />

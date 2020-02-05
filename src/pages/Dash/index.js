@@ -19,7 +19,7 @@ class Dash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSection: "recurring",
+      activeSection: "transactions",
       files: [],
       workingFile: {},
       selectedMonth: 0,
@@ -36,7 +36,16 @@ class Dash extends Component {
     } else {
       data = await parseFiles(files);
     }
-    this.setState({ files: data, workingFile: data[0] });
+    if (!data.every(item => item.transactions.length !== 0)) {
+      this.props.history.push({
+        pathname: "/"
+      });
+      this.props.history.push({
+        pathname: "/error"
+      });
+    } else {
+      this.setState({ files: data, workingFile: data[0] });
+    }
   };
 
   handleSidebarChange = activeSection =>

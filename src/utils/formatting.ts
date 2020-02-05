@@ -43,6 +43,10 @@ export function formatDate(date: String): String {
   if (date.includes("/")) {
     split = date.split("/");
   }
+  if (!date.includes("-") && !date.includes("/")) {
+    split = [date.substring(0, 4), date.substring(4, 6), date.substring(6, 8)];
+  }
+
   if (split.length !== 0) {
     //yyyy/mm/dd
     if (split[0].length === 4) {

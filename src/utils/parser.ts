@@ -2,7 +2,7 @@
 const Papa = require("papaparse");
 const Stoor = require("stoor");
 
-const { formatDate, isValidDate, getMonthNumber } = require("./formatting");
+const { formatDate, isValidDate } = require("./formatting");
 interface DataPoint {
   date: String;
   amount: Number;
@@ -43,12 +43,22 @@ export function parseResults(res: any): Array<DataPoint> {
   res.data.map((item: any) => {
     //FNB date/amount/balance/ref
     if (item["0"] && item["1"] && item["3"]) {
+      //  FNB
       if (!isNaN(parseInt(item["1"])) && isValidDate(formatDate(item["0"]))) {
         data.push({
           date: formatDate(item["0"]),
           amount: parseInt(item["1"]),
           ref: item["3"]
         });
+      } else {
+        //  Absa   date/ref/amount
+        if (isValidDate(formatDate(item["0"])) && !isNaN(parseInt(item["2"]))) {
+          data.push({
+            date: formatDate(item["0"]),
+            amount: parseInt(item["2"]),
+            ref: item["1"]
+          });
+        }
       }
     } else {
       //Nedbank date/ref/amount
