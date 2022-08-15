@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a99a77ed.chunk.css",
+    "main.js": "/static/js/main.3f407033.chunk.js",
+    "main.js.map": "/static/js/main.3f407033.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ae312267.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ae312267.js.map",
+    "static/js/2.17b86d33.chunk.js": "/static/js/2.17b86d33.chunk.js",
+    "static/js/2.17b86d33.chunk.js.map": "/static/js/2.17b86d33.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.d0fd2e3a0a53de1bea82dcfd9d100dad.js": "/precache-manifest.d0fd2e3a0a53de1bea82dcfd9d100dad.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a99a77ed.chunk.css.map": "/static/css/main.a99a77ed.chunk.css.map",
+    "static/media/absa.png": "/static/media/absa.f1a18cf1.png",
+    "static/media/example.csv": "/static/media/example.c252829b.csv",
+    "static/media/fnb.png": "/static/media/fnb.cb74ed57.png",
+    "static/media/landing-bg.png": "/static/media/landing-bg.dcbc3974.png",
+    "static/media/logo.png": "/static/media/logo.04e2ba5e.png",
+    "static/media/nedbank.png": "/static/media/nedbank.fbff1ee7.png",
+    "static/media/uc.svg": "/static/media/uc.b2cbe806.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ae312267.js",
+    "static/js/2.17b86d33.chunk.js",
+    "static/css/main.a99a77ed.chunk.css",
+    "static/js/main.3f407033.chunk.js"
+  ]
+}
